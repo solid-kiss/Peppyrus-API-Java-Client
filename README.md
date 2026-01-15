@@ -80,9 +80,9 @@ Learn more about Peppyrus at [https://www.peppyrus.be](https://www.peppyrus.be)
 ## Quick Start
 
 ```java
-import be.solid_kiss.peppyrus_api.client.PeppyrusClient;
-import be.solid_kiss.peppyrus_api.client.PeppyrusClientConfig;
-import be.solid_kiss.peppyrus_api.model.*;
+import io.github.solid_kiss.peppyrus_api.client.PeppyrusClient;
+import io.github.solid_kiss.peppyrus_api.client.PeppyrusClientConfig;
+import io.github.solid_kiss.peppyrus_api.model.*;
 
 // Create client for TEST environment
 PeppyrusClient client = PeppyrusClient.create(
