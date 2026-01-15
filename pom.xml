@@ -6,7 +6,7 @@
 
     <groupId>be.solid_kiss</groupId>
     <artifactId>peppyrus-java-client</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1</version>
 
     <name>Peppyrus API Java Client</name>
     <description>Java Client for Peppyrus API - PEPPOL Access Point</description>
