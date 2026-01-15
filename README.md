@@ -10,15 +10,10 @@ Java client library for the Peppyrus API - A free and reliable PEPPOL Access Poi
 
 - [About](#about)
 - [Features](#features)
-- [Installation](#installation)
 - [Quick Start](#quick-start)
-- [Configuration](#configuration)
 - [Usage Examples](#usage-examples)
 - [API Reference](#api-reference)
-- [Testing](#testing)
 - [Contributing](#contributing)
-- [Support](#support)
-- [License](#license)
 
 ## About
 
@@ -321,16 +316,6 @@ Entry point for all Peppyrus services.
 - `contact(String)` - Contact information
 - `identifierScheme(String)` - Identifier scheme (e.g., "VAT")
 - `identifierValue(String)` - Identifier value
-
-## Testing
-
-The library includes comprehensive unit and integration tests using JUnit 5 and Mockito.
-
-### Running Tests
-
-```bash
-mvn test
-```
 
 ## Contributing
 
