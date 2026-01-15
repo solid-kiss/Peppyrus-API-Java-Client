@@ -13,8 +13,8 @@ public class PeppyrusClientConfig {
   private final URI baseUri;
   private final HttpClient httpClient;
 
-  private final static URI TEST_URI = URI.create("https://api.test.peppyrus.be/v1");
-  private final static URI PROD_URI = URI.create("https://api.peppyrus.be/v1");
+  public final static URI TEST_URI = URI.create("https://api.test.peppyrus.be/v1");
+  public final static URI PROD_URI = URI.create("https://api.peppyrus.be/v1");
 
   private PeppyrusClientConfig(Builder builder) {
     this.apiKey = builder.apiKey;
@@ -86,7 +86,4 @@ public class PeppyrusClientConfig {
     }
   }
 
-  public enum PeppyrusEnv {
-    TEST, PROD
-  }
 }

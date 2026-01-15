@@ -19,11 +19,11 @@ public class PeppyrusClient {
     this.peppolClient = new PeppyrusPeppolClient(config);
   }
 
-  public static PeppyrusClient create(PeppyrusClientConfig config) {
+  private static PeppyrusClient create(PeppyrusClientConfig config) {
     return new PeppyrusClient(config);
   }
 
-  public static PeppyrusClient create(String apiKey, PeppyrusClientConfig.PeppyrusEnv env) {
+  public static PeppyrusClient create(String apiKey, PeppyrusEnv env) {
     PeppyrusClientConfig config = PeppyrusClientConfig.builder()
             .apiKey(apiKey)
             .withEnv(env)

@@ -16,6 +16,7 @@ public abstract class PeppyrusBaseClient {
 
   protected final PeppyrusClientConfig config;
   protected final ObjectMapper objectMapper;
+  private final static String API_KEY_HEADER_NAME = "X-Api-Key";
 
   protected PeppyrusBaseClient(PeppyrusClientConfig config) {
     this.config = config;
@@ -34,7 +35,7 @@ public abstract class PeppyrusBaseClient {
     return HttpRequest.newBuilder()
             .uri(uri)
             .timeout(Duration.ofSeconds(30))
-            .header("X-Api-Key", config.getApiKey())
+            .header(API_KEY_HEADER_NAME, config.getApiKey())
             .header("Content-Type", "application/json")
             .header("Accept", "application/json");
   }
