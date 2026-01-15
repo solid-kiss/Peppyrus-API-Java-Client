@@ -2,6 +2,11 @@ package be.solid_kiss.peppyrus_api.model;
 
 public class OrganizationPeppolInfo {
 
+  /**
+   * @param participantId
+   * @param canReceive
+   * @param isSender
+   */
   public static record Participant (String participantId, Boolean canReceive, Boolean isSender){}
 
   private Participant participants;

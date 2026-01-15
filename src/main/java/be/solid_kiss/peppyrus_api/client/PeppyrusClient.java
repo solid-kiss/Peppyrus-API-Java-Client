@@ -1,8 +1,8 @@
 package be.solid_kiss.peppyrus_api.client;
 
+import be.solid_kiss.peppyrus_api.client.services.PeppyrusMessageClient;
 import be.solid_kiss.peppyrus_api.client.services.PeppyrusOrganizationClient;
 import be.solid_kiss.peppyrus_api.client.services.PeppyrusPeppolClient;
-import be.solid_kiss.peppyrus_api.client.services.PeppyrusMessageClient;
 
 /**
  * Entrypoint for all peppyrus services

@@ -1,11 +1,11 @@
 package be.solid_kiss.peppyrus_api.client.services;
 
-import be.solid_kiss.peppyrus_api.model.MessageList;
 import be.solid_kiss.peppyrus_api.client.PeppyrusApiException;
 import be.solid_kiss.peppyrus_api.client.PeppyrusBaseClient;
 import be.solid_kiss.peppyrus_api.client.PeppyrusClientConfig;
 import be.solid_kiss.peppyrus_api.model.Message;
 import be.solid_kiss.peppyrus_api.model.MessageBody;
+import be.solid_kiss.peppyrus_api.model.MessageList;
 import be.solid_kiss.peppyrus_api.model.MessageReport;
 
 import java.net.URLEncoder;

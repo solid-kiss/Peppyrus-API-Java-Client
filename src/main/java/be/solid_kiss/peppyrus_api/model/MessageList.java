@@ -4,6 +4,11 @@ import java.util.Set;
 
 public class MessageList {
 
+  /**
+   * @param pages
+   * @param currentPage
+   * @param itemCount
+   */
   public static record Meta(int pages, int currentPage, int itemCount){}
 
   private Set<Message> items;

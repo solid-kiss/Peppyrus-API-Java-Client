@@ -4,15 +4,31 @@ import java.util.List;
 
 public class BusinessCardEntity{
 
+  /**
+   * @param name
+   * @param language
+   */
 	public static record BusinessCardEntityName (String name, String language) {}
+
+  /**
+   * @param phone
+   * @param name
+   * @param type
+   * @param email
+   */
 	public static record BusinessCardEntityContact (String phone, String name, String type, String email) {}
-	public static record BusinesscardEntityIdentifier(String scheme, String value){}
+
+  /**
+   * @param scheme
+   * @param value
+   */
+	public static record BusinessCardEntityIdentifier(String scheme, String value){}
 
 
 	private List<String> website;
 	private String geoInfo;
 	private String countryCode;
-	private List<BusinesscardEntityIdentifier> identifiers;
+	private List<BusinessCardEntityIdentifier> identifiers;
 	private List<BusinessCardEntityName> name;
 	private String additionalInfo;
 	private String regDate;
@@ -42,11 +58,11 @@ public class BusinessCardEntity{
 		return countryCode;
 	}
 
-	public void setIdentifiers(List<BusinesscardEntityIdentifier> identifiers){
+	public void setIdentifiers(List<BusinessCardEntityIdentifier> identifiers){
 		this.identifiers = identifiers;
 	}
 
-	public List<BusinesscardEntityIdentifier> getIdentifiers(){
+	public List<BusinessCardEntityIdentifier> getIdentifiers(){
 		return identifiers;
 	}
 
