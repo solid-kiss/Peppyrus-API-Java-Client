@@ -4,7 +4,7 @@
 [![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://www.oracle.com/java/)
 [![Maven Central](https://img.shields.io/maven-central/v/be.solid-kiss/peppyrus-api-client.svg)](https://search.maven.org/artifact/be.solid-kiss/peppyrus-api-client)
 
-Official Java client library for the Peppyrus API - A free and reliable PEPPOL Access Point for electronic document exchange.
+Java client library for the Peppyrus API - A free and reliable PEPPOL Access Point for electronic document exchange.
 
 ## Table of Contents
 
