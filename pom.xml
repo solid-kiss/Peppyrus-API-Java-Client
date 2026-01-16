@@ -33,10 +33,19 @@
     </scm>
 
     <distributionManagement>
+        <!-- Release repository -->
         <repository>
-            <id>central</id>
-            <url>https://central.sonatype.com/api/v1/publisher/deployments</url>
+            <id>ossrh</id>
+            <name>OSSRH Releases</name>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
+
+        <!-- Snapshot repository -->
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>OSSRH Snapshots</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <properties>

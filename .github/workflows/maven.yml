@@ -2,14 +2,17 @@ name: Java CI / Release
 
 on:
   push:
+    # Pas de déploiement sur main, juste tests
     branches: ["main"]
-    tags: ["v*"]
+    # Tags déclenchent le release ou snapshot
+    tags: ["v*", "*-SNAPSHOT"]
   pull_request:
     branches: ["main"]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +29,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     needs: test
-    if: startsWith(github.ref, 'refs/tags/v')   # ne s'exécute que sur les tags
+    # ne s'exécute que sur les tags
+    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v4
 
@@ -44,14 +48,25 @@ jobs:
         run: |
           echo "$GPG_PRIVATE_KEY" | gpg --batch --import
 
-      - name: Verify version matches tag
+      - name: Set version from tag
+        id: set_version
         run: |
-          POM_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          TAG_VERSION=${GITHUB_REF#refs/tags/v}
-          echo "POM version: $POM_VERSION, Tag version: $TAG_VERSION"
-          if [ "$POM_VERSION" != "$TAG_VERSION" ]; then
-            sed -i "s|@TAG_VERSION@|${TAG_VERSION}|" pom.xml
-            echo "POM updated to match tag"
+          TAG_FULL=${GITHUB_REF#refs/tags/}
+          if [[ "$TAG_FULL" == v* ]]; then
+            TAG_VERSION=${TAG_FULL#v}
+          else
+            TAG_VERSION=$TAG_FULL
+          fi
+          echo "Tag full: $TAG_FULL, POM version: $TAG_VERSION"
+          sed -i "s|@TAG_VERSION@|${TAG_VERSION}|g" pom.xml
+          echo "TAG_VERSION=$TAG_VERSION" >> $GITHUB_ENV
+
+      - name: Determine deployment repository
+        run: |
+          if [[ "$TAG_VERSION" == *-SNAPSHOT ]]; then
+            echo "DEPLOY_REPO=https://s01.oss.sonatype.org/content/repositories/snapshots/" >> $GITHUB_ENV
+          else
+            echo "DEPLOY_REPO=https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/" >> $GITHUB_ENV
           fi
 
       - name: Deploy to Maven Central
@@ -59,4 +74,8 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-        run: mvn clean deploy -P release -B -Dgpg.passphrase="${GPG_PASSPHRASE}"
+          DEPLOY_REPO: ${{ env.DEPLOY_REPO }}
+        run: |
+          mvn clean deploy -B -P release \
+              -Dgpg.passphrase="${GPG_PASSPHRASE}" \
+              -DaltDeploymentRepository=ossrh::default::${DEPLOY_REPO}
