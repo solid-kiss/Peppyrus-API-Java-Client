@@ -78,4 +78,6 @@ jobs:
         run: |
           mvn clean deploy -B -P release \
               -Dgpg.passphrase="${GPG_PASSPHRASE}" \
-              -DaltDeploymentRepository=ossrh::default::${DEPLOY_REPO}
+              -DaltDeploymentRepository=ossrh::default::${DEPLOY_REPO} \
+              -Dossrh.username=${OSSRH_USERNAME} \
+              -Dossrh.password=${OSSRH_PASSWORD}
