@@ -50,7 +50,7 @@ jobs:
           TAG_VERSION=${GITHUB_REF#refs/tags/v}
           echo "POM version: $POM_VERSION, Tag version: $TAG_VERSION"
           if [ "$POM_VERSION" != "$TAG_VERSION" ]; then
-            sed -i "s|<version>.*</version>|<version>${TAG_VERSION}</version>|" pom.xml
+            sed -i "s|@TAG_VERSION@|${TAG_VERSION}|" pom.xml
             echo "POM updated to match tag"
           fi
 

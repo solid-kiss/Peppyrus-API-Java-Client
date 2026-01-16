@@ -6,7 +6,7 @@
 
     <groupId>io.github.solid-kiss</groupId>
     <artifactId>peppyrus-java-client</artifactId>
-    <version>0.1</version>
+    <version>@TAG_VERSION@</version>
 
     <name>Peppyrus API Java Client</name>
     <description>Java Client for Peppyrus API - PEPPOL Access Point</description>
