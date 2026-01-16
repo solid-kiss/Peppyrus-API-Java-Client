@@ -34,11 +34,11 @@
 
     <distributionManagement>
         <!-- Release repository -->
-        <repository>
-            <id>ossrh</id>
-            <name>OSSRH Releases</name>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
+<!--        <repository>-->
+<!--            <id>ossrh</id>-->
+<!--            <name>OSSRH Releases</name>-->
+<!--            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--        </repository>-->
 
         <!-- Snapshot repository -->
         <snapshotRepository>
