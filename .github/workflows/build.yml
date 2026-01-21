@@ -11,7 +11,7 @@ jobs:
 
     name: build java 17
     steps:
-      - name: Checkout reposistory
+      - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Set up java
         uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
@@ -40,23 +40,22 @@ jobs:
           server-username: MAVEN_CENTRAL_TOKEN_USERNAME
           server-password: MAVEN_CENTRAL_TOKEN_PASSWORD
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
-      - name: Activate Artifact Signing and Version Suffix
+      - name: Set version
         run: |
-          profiles="build-sources-and-javadoc,deploy-to-maven-central"
           if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
-            profiles="$profiles,sign-artifacts"
-            version_suffix=""
+            # Pour les tags, utiliser la version du tag sans le préfixe 'v'
+            version="${GITHUB_REF_NAME#v}"
           else
-            version_suffix="-SNAPSHOT"
+            # Pour les branches, ajouter -SNAPSHOT
+            version="${GITHUB_REF_NAME}-SNAPSHOT"
           fi
-          echo "MAVEN_PROFILES=$profiles" >> $GITHUB_ENV
-          version="${GITHUB_REF_NAME}${version_suffix}"
           echo "VERSION=$version" >> $GITHUB_ENV
-      - name: Set Maven version
-        run: mvn --batch-mode --no-transfer-progress versions:set -DnewVersion=${VERSION}
+          mvn --batch-mode --no-transfer-progress versions:set -DnewVersion=${version}
       - name: Build and deploy to Maven Central
         run: |
-          mvn --batch-mode --no-transfer-progress --activate-profiles ${MAVEN_PROFILES} deploy
+          mvn --batch-mode --no-transfer-progress \
+            --activate-profiles build-sources-and-javadoc,sign-artifacts \
+            deploy
         env:
           MAVEN_CENTRAL_TOKEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_CENTRAL_TOKEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
