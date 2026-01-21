@@ -26,6 +26,12 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:https://github.com/solid-kiss/Peppyrus-API-Java-Client.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:solid-kiss/Peppyrus-API-Java-Client.git</developerConnection>
+        <url>https://github.com/solid-kiss/Peppyrus-API-Java-Client</url>
+    </scm>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -56,15 +62,11 @@
             <version>5.8.0</version>
             <scope>test</scope>
         </dependency>
-        </dependencies>
+    </dependencies>
 
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>3.1.4</version>
-                </plugin>
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.5.0</version>
@@ -94,12 +96,76 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.4.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>build-sources-and-javadoc</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.6.3</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-    <scm>
-        <connection>scm:git:https://github.com/solid-kiss/Peppyrus-API-Java-Client.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:solid-kiss/Peppyrus-API-Java-Client.git</developerConnection>
-        <url>https://github.com/solid-kiss/Peppyrus-API-Java-Client</url>
-    </scm>
+        <profile>
+            <id>sign-artifacts</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
