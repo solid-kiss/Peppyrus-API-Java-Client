@@ -14,10 +14,10 @@ public class PeppyrusOrganizationClient extends PeppyrusBaseClient {
   }
 
   public OrganizationInfo getInfo() throws PeppyrusApiException {
-    return sendGet("/organization/info", OrganizationInfo.class);
+    return sendGet("organization/info", OrganizationInfo.class);
   }
 
   public OrganizationPeppolInfo getPeppol() throws PeppyrusApiException {
-    return sendGet("/organization/peppol", OrganizationPeppolInfo.class);
+    return sendGet("organization/peppol", OrganizationPeppolInfo.class);
   }
 }

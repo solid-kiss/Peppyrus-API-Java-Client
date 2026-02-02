@@ -20,11 +20,11 @@ public class PeppyrusMessageClient extends PeppyrusBaseClient {
   }
 
   public Message postMessage(MessageBody messageBody) throws PeppyrusApiException {
-    return sendPost("/message", messageBody, Message.class);
+    return sendPost("message", messageBody, Message.class);
   }
 
   public MessageList listMessages(MessageListParams params) throws PeppyrusApiException {
-    String path = "/message/list" + buildQueryString(params);
+    String path = "message/list" + buildQueryString(params);
     return sendGet(path, MessageList.class);
   }
 
@@ -33,19 +33,19 @@ public class PeppyrusMessageClient extends PeppyrusBaseClient {
   }
 
   public Message getMessage(String messageId) throws PeppyrusApiException {
-    return sendGet("/message/" + messageId, Message.class);
+    return sendGet("message/" + messageId, Message.class);
   }
 
   public void deleteMessage(String messageId) throws PeppyrusApiException {
-    sendDelete("/message/" + messageId);
+    sendDelete("message/" + messageId);
   }
 
   public Boolean confirmMessage(String messageId) throws PeppyrusApiException {
-    return sendPatch("/message/" + messageId + "/confirm", Boolean.class);
+    return sendPatch("message/" + messageId + "/confirm", Boolean.class);
   }
 
   public MessageReport getMessageReport(String messageId) throws PeppyrusApiException {
-    return sendGet("/message/" + messageId + "/report", MessageReport.class);
+    return sendGet("message/" + messageId + "/report", MessageReport.class);
   }
 
   private String buildQueryString(MessageListParams params) {

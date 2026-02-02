@@ -28,7 +28,7 @@ public class PeppyrusPeppolClient extends PeppyrusBaseClient {
     params.put("vatNumber", vatNumber);
     params.put("countryCode", countryCode);
 
-    String path = "/peppol/bestMatch" + buildQueryString(params);
+    String path = "peppol/bestMatch" + buildQueryString(params);
     return sendGet(path, Participant.class);
   }
 
@@ -39,12 +39,12 @@ public class PeppyrusPeppolClient extends PeppyrusBaseClient {
     Map<String, String> params = new HashMap<>();
     params.put("participantId", participantId);
 
-    String path = "/peppol/lookup" + buildQueryString(params);
+    String path = "peppol/lookup" + buildQueryString(params);
     return sendGet(path, Participant.class);
   }
 
   public List<BusinessCard> search(PeppolSearchParams params) throws PeppyrusApiException {
-    String path = "/peppol/search" + buildQueryString(params.toMap());
+    String path = "peppol/search" + buildQueryString(params.toMap());
 
     try {
       String response = sendGetRaw(path);

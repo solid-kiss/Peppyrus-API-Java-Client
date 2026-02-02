@@ -83,11 +83,13 @@ Learn more about Peppyrus at [https://www.peppyrus.be](https://www.peppyrus.be)
 import io.github.solid_kiss.peppyrus_api.client.PeppyrusClient;
 import io.github.solid_kiss.peppyrus_api.client.PeppyrusClientConfig;
 import io.github.solid_kiss.peppyrus_api.model.*;
+import io.github.solid_kiss.peppyrus_api.client.PeppyrusEnv;
+
 
 // Create client for TEST environment
 PeppyrusClient client = PeppyrusClient.create(
     "your-api-key", 
-    PeppyrusClientConfig.PeppyrusEnv.TEST
+    PeppyrusEnv.TEST
 );
 
 // Get organization information
@@ -120,8 +122,6 @@ System.out.println("Participant ID: " + participant.getParticipantId());
 MessageBody messageBody = new MessageBody();
 messageBody.setSender("9925:be0123456789");
 messageBody.setRecipient("9925:be9876543210");
-messageBody.setProcessType("cenbii-procid-ubl::urn:fdc:peppol.eu:2017:poacc:billing:01:1.0");
-messageBody.setDocumentType("busdox-docid-qns::urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1");
 
 // Encode XML content to base64
 String xmlContent = "<?xml version=\"1.0\"?>..."; // Your UBL XML
