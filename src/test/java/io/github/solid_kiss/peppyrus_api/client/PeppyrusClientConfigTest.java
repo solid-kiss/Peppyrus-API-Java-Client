@@ -23,7 +23,7 @@ class PeppyrusClientConfigTest {
     // Assert
     assertNotNull(config);
     assertEquals(TEST_API_KEY, config.getApiKey());
-    assertEquals("https://api.test.peppyrus.be/v1", config.getBaseUri().toString());
+    assertEquals("https://api.test.peppyrus.be/v1/", config.getBaseUri().toString());
     assertNotNull(config.getHttpClient());
   }
 
