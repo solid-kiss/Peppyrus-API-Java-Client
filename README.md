@@ -1,6 +1,6 @@
 # Peppyrus API Java Client
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL v3](https://img.shields.io/badge/License-Apachev2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 [![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://www.oracle.com/java/)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.solid-kiss/peppyrus-java-client.svg)](https://search.maven.org/artifact/io.github.solid-kiss/peppyrus-java-client)
 
