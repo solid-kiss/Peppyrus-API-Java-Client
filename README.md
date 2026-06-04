@@ -2,7 +2,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://www.oracle.com/java/)
-[![Maven Central](https://img.shields.io/maven-central/v/be.solid-kiss/peppyrus-api-client.svg)](https://search.maven.org/artifact/be.solid-kiss/peppyrus-api-client)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.solid-kiss/peppyrus-java-client.svg)](https://search.maven.org/artifact/io.github.solid-kiss/peppyrus-java-client)
 
 Java client library for the Peppyrus API - A free and reliable PEPPOL Access Point for electronic document exchange.
 
