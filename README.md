@@ -37,28 +37,21 @@ Learn more about Peppyrus at [https://www.peppyrus.be](https://www.peppyrus.be)
 - **Comprehensive Testing** - Extensive unit and integration test coverage
 - **Minimal Dependencies** - Only Jackson for JSON processing
 
-[//]: # (## Installation)
+## Installation
 
-[//]: # ()
-[//]: # (### Maven)
+### Maven
+Add the following dependency to your `pom.xml`:
 
-[//]: # ()
-[//]: # (Add the following dependency to your `pom.xml`:)
 
-[//]: # ()
-[//]: # (```xml)
+```xml
+<dependency>
+    <groupId>io.github.solid-kiss</groupId>
+    <artifactId>peppyrus-java-client</artifactId>
+    <version>v0.2.3</version>
+    <scope>compile</scope>
+</dependency>
 
-[//]: # (<dependency>)
-
-[//]: # (    <groupId>io.github.solid_kiss</groupId>)
-
-[//]: # (    <artifactId>peppyrus-api-client</artifactId>)
-
-[//]: # (    <version>1.0.0</version>)
-
-[//]: # (</dependency>)
-
-[//]: # (```)
+```
 
 [//]: # (### Gradle)
 
