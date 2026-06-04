@@ -46,14 +46,21 @@ class PeppyrusMessageClientTest {
   }
 
   @Test
+  void testPostMessage_Invoice() throws Exception {
+    MessageBody messageBody = MessageBody.invoice("9925:be0123456789", "9925:be9876543210", "base64content");
+    assertEquals(MessageBody.DOCUMENT_TYPE_INVOICE, messageBody.getDocumentType());
+  }
+
+  @Test
+  void testPostMessage_CreditNote() throws Exception {
+    MessageBody messageBody = MessageBody.creditNote("9925:be0123456789", "9925:be9876543210", "base64content");
+    assertEquals(MessageBody.DOCUMENT_TYPE_CREDIT_NOTE, messageBody.getDocumentType());
+  }
+
+  @Test
   void testPostMessage_Success() throws Exception {
 
-    MessageBody messageBody = new MessageBody();
-    messageBody.setSender("9925:be0123456789");
-    messageBody.setRecipient("9925:be9876543210");
-    messageBody.setProcessType("cenbii-procid-ubl::urn:fdc:peppol.eu:2017:poacc:billing:01:1.0");
-    messageBody.setDocumentType("busdox-docid-qns::urn:oasis:names:specification:ubl:schema:xsd:Invoice-2");
-    messageBody.setFileContent("base64content");
+    MessageBody messageBody = MessageBody.invoice("9925:be0123456789", "9925:be9876543210", "base64content");
 
     Message expectedMessage = new Message();
     expectedMessage.setId("message-123");
@@ -240,7 +247,7 @@ class PeppyrusMessageClientTest {
 
   @Test
   void testValidationError() throws Exception {
-    MessageBody invalidBody = new MessageBody();
+    MessageBody invalidBody = MessageBody.invoice("9925:be0123456789", "9925:be9876543210", "base64content");
     when(mockResponse.statusCode()).thenReturn(422);
     when(mockResponse.body()).thenReturn("Invalid message body");
     when(mockHttpClient.send(any(HttpRequest.class), any(HttpResponse.BodyHandler.class)))

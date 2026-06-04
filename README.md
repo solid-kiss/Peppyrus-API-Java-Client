@@ -118,18 +118,24 @@ System.out.println("Participant ID: " + participant.getParticipantId());
 ### Sending a Message
 
 ```java
-// Prepare message body
-MessageBody messageBody = new MessageBody();
-messageBody.setSender("9925:be0123456789");
-messageBody.setRecipient("9925:be9876543210");
 
-// Encode XML content to base64
+import io.github.solid_kiss.peppyrus_api.model.MessageBody;// Encode XML content to base64
 String xmlContent = "<?xml version=\"1.0\"?>..."; // Your UBL XML
 String base64Content = Base64.getEncoder().encodeToString(xmlContent.getBytes());
-messageBody.setFileContent(base64Content);
+
+String sender = "9925:be0123456789";
+String recipient = "9925:be9876543210";
+
+// Instantiate message body for sending invoice
+MessageBody messageBody = MessageBody.invoice(sender, recipient, base64Content);
+
+// Or if you want to send  a credit note
+MessageBody messageBody = MessageBody.creditNote(sender, recipient, base64Content);
+
 
 // Send message
 Message sentMessage = client.messages().postMessage(messageBody);
+
 System.out.println("Message sent with ID: " + sentMessage.getId());
 ```
 
